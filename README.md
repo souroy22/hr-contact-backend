@@ -29,7 +29,6 @@ Follow these steps to set up the project:
 
 3. **Configure environment variables:**
 
-   - Create a `.env` file in the root directory.
    - Add your MongoDB URI to the `.env` file:
 
      ```env
