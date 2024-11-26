@@ -1,4 +1,7 @@
-export const whitelist = ["http://localhost:5173"];
+export const whitelist = [
+  "http://localhost:5173",
+  "https://hr-contact.netlify.app",
+];
 
 // Configure CORS options
 export const corsOptions = {
