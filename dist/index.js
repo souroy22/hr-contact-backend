@@ -24,6 +24,10 @@ app.get("/", (_, res) => {
     return res.status(200).json({ msg: "Sucessfully running" });
 });
 app.use("/api/v1", routers_1.default);
+app.use((err, req, res, next) => {
+    console.error(err);
+    res.status(500).json({ error: "Internal Server Error" });
+});
 app.listen(parseInt(PORT, 10), `0.0.0.0`, () => {
     console.log(`Server is running on PORT: ${PORT}`);
 });

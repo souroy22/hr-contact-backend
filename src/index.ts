@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
@@ -35,6 +35,10 @@ app.get("/", (_: Request, res: Response) => {
 });
 
 app.use("/api/v1", routers);
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  console.error(err);
+  res.status(500).json({ error: "Internal Server Error" });
+});
 
 app.listen(parseInt(PORT, 10), `0.0.0.0`, () => {
   console.log(`Server is running on PORT: ${PORT}`);
