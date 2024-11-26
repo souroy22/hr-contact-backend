@@ -1,8 +1,7 @@
 import express from "express";
-import authRouter from "./auth.routers";
+import contactRouters from "./contact.router";
 
 const routers = express.Router();
-
-routers.use("/auth", authRouter);
+routers.use("/contact", contactRouters);
 
 export default routers;

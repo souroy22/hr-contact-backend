@@ -12,16 +12,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const genarateToken = (user) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
-    if (!((_a = process.env.SECRET_KEY) === null || _a === void 0 ? void 0 : _a.trim())) {
-        return null;
+exports.checkForDuplicateContact = void 0;
+const Contact_model_1 = __importDefault(require("../models/Contact.model"));
+const checkForDuplicateContact = (contact) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const user = yield Contact_model_1.default.findOne({ contactNumber: contact });
+        return user !== null && user !== void 0 ? user : null;
     }
-    const token = yield jsonwebtoken_1.default.sign({ user }, process.env.SECRET_KEY, {
-        expiresIn: "1d", // expires in 1 Day
-    });
-    return token;
+    catch (error) {
+        if (error instanceof Error) {
+            console.log(`Error: ${error.message}`);
+            throw new Error(error.message);
+        }
+    }
 });
-exports.default = genarateToken;
-//# sourceMappingURL=generateToken.js.map
+exports.checkForDuplicateContact = checkForDuplicateContact;
+//# sourceMappingURL=checkForDuplicateContact.js.map
